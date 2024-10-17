@@ -8,9 +8,10 @@
         <version>3.3.4</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-    <groupId>com.example</groupId>
+    <groupId>com.zack.shangpin</groupId>
     <artifactId>Shangpin_Selection</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <packaging>pom</packaging>
     <name>Shangpin_Selection</name>
     <description>Shangpin_Selection</description>
     <url/>
@@ -20,6 +21,13 @@
     <developers>
         <developer/>
     </developers>
+    <modules>
+        <module>Shangpin_common</module>
+        <module>Shangpin_common/common-util</module>
+        <module>Shangpin_common/common-service</module>
+        <module>Shangpin_model</module>
+        <module>Shangpin_manager</module>
+    </modules>
     <scm>
         <connection/>
         <developerConnection/>
@@ -28,8 +36,15 @@
     </scm>
     <properties>
         <java.version>17</java.version>
+        <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <mysql.version>8.0.29</mysql.version>
+        <fastjson.version>1.2.73</fastjson.version>
+        <jodatime.version>2.9.3</jodatime.version>
+        <lombok.version>1.18.30</lombok.version>
+        <mybatis.version>3.0.1</mybatis.version>
     </properties>
-    <dependencies>
+    <dependencyManagement><dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
@@ -40,7 +55,28 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-    </dependencies>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>${mysql.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${fastjson.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${jodatime.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+        </dependency>
+    </dependencies></dependencyManagement>
+
 
     <build>
         <plugins>
