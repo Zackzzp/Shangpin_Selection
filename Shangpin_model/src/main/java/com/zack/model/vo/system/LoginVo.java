@@ -1,4 +1,4 @@
-package com.zack.model.vo;
+package com.zack.model.vo.system;
 
 import lombok.Data;
 
