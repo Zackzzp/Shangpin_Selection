@@ -13,6 +13,17 @@ spring:
 mybatis:
   config-location: classpath:/mybatis-config.xml
   mapper-locations: classpath:/mapper/*/*.xml
+#自定义配置
+zack:
+  auth:
+    noauthurls:
+      - /admin/system/index/login
+      - /admin/system/index/generateValidateCode
+      - /doc.html
+      - /webjars/css/**
+      - /webjars/js/**
+      - /v3/api-docs/**
+      - /favicon.ico
 
 
 
