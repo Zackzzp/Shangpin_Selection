@@ -1,10 +1,10 @@
 package com.zack.model.enity.system;
 
 import lombok.Data;
-import com.zack.model.enity.base.BaseEnity;
+import com.zack.model.enity.base.BaseEntity;
 
 @Data
-public class SysUser extends BaseEnity {
+public class SysUser extends BaseEntity {
     private static final long serialVersionUID = 1L;
     private String userName;  // 该字段的属性名称和数据表字段不一致
     private String password;

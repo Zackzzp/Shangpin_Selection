@@ -7,10 +7,11 @@ import com.zack.model.vo.system.ValidateCodeVo;
 import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
-
+@Service
 public class ValidateCodeimpl implements ValidateCodeService {
     @Resource
     private RedisTemplate<String,String> redisTemplate;

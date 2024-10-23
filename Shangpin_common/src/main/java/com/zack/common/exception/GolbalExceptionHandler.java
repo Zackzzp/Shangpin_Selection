@@ -15,7 +15,7 @@ public class GolbalExceptionHandler {
 
     }
     //处理系统异常
-    @ExceptionHandler(value = ZackException.class)
+    @ExceptionHandler(value =Exception.class)
     public Result systemExceptionHandler(ZackException exception) {
         exception.printStackTrace();
         return Result.build(null, ResultCodeEnum.SYSTEM_ERROR);

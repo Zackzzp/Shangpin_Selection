@@ -56,4 +56,6 @@ public class IndexController {
         return Result.build(null, ResultCodeEnum.SUCCESS);
     }
 
+
+
 }
