@@ -1,6 +1,8 @@
 package com.zack.manager.service;
 
+import com.github.pagehelper.PageInfo;
 import com.zack.model.dto.system.LoginDto;
+import com.zack.model.dto.system.SysUserDto;
 import com.zack.model.enity.system.SysUser;
 import com.zack.model.vo.system.LoginVo;
 
@@ -26,4 +28,30 @@ public interface SysUserService {
      */
     public abstract void logout(String token);
 
+    /**
+     * 按页查询用户
+     * @param pageNum
+     * @param pageSize
+     * @return
+     */
+    public PageInfo<SysUser> findByPage(SysUserDto sysUserDto,int pageNum, int pageSize);
+
+    /**
+     * 保存用户
+     * @param sysUser
+     */
+    public void saveSysUser(SysUser sysUser);
+
+    /**
+     * 修改用户
+     * @param sysUser
+     *
+     */
+    public void updateSysUser(SysUser sysUser);
+
+    /**
+     * 删除用户
+     * @param id
+     */
+    public void deleteById(Long id);
 }

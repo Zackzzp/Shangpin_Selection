@@ -2,7 +2,10 @@ package com.zack.manager.service.impl;
 
 import cn.hutool.core.util.StrUtil;
 import com.alibaba.fastjson.JSON;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zack.common.exception.ZackException;
+import com.zack.model.dto.system.SysUserDto;
 import com.zack.model.vo.common.ResultCodeEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -14,6 +17,7 @@ import com.zack.model.dto.system.LoginDto;
 import com.zack.model.enity.system.SysUser;
 import com.zack.model.vo.system.LoginVo;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -73,5 +77,28 @@ public class SysUserImpl implements SysUserService {
     @Override
     public void logout(String token) {
         redisTemplate.delete("user:login:"+token);
+    }
+
+    @Override
+    public PageInfo<SysUser> findByPage(SysUserDto sysUserDto,int pageNum, int pageSize) {
+        PageHelper.startPage(pageNum,pageSize);
+        List<SysUser> sysUserList=sysUserMapper.findByPage(sysUserDto);
+        PageInfo<SysUser> pageInfo = new PageInfo<>(sysUserList);
+        return pageInfo;
+    }
+
+    @Override
+    public void saveSysUser(SysUser sysUser) {
+        sysUserMapper.saveSysUser(sysUser);
+    }
+
+    @Override
+    public void updateSysUser(SysUser sysUser) {
+        sysUserMapper.updateSysUser(sysUser);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        sysUserMapper.deleteById(id);
     }
 }
