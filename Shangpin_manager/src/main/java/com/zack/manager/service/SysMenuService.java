@@ -22,4 +22,16 @@ public interface SysMenuService {
      * @param sysMenu
      */
     public abstract void save(SysMenu sysMenu);
+
+    /**
+     * 按id删除菜单
+     * @param id
+     */
+    public abstract void removeById(Long id);
+
+    /**
+     * 修改菜单
+     * @param sysMenu
+     */
+    public abstract void updateById(SysMenu sysMenu);
 }

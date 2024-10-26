@@ -28,5 +28,15 @@ public class SysMenuController {
         return Result.build(null , ResultCodeEnum.SUCCESS) ;
     }
 
+    @DeleteMapping("/removeById/{id}")
+    public Result removeById(@PathVariable Long id) {
+        sysMenuService.removeById(id);
+        return Result.build(null , ResultCodeEnum.SUCCESS) ;
+    }
+    @PutMapping("/updateById")
+    public Result updateById(@RequestBody SysMenu sysMenu) {
+        sysMenuService.updateById(sysMenu);
+        return Result.build(null , ResultCodeEnum.SUCCESS) ;
+    }
 
 }

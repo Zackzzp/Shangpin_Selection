@@ -26,8 +26,44 @@
                                  #{status}
                          )
         </insert>
+    <select id="countByParentId" resultType="Integer">
+        select count(id)
+        from sys_menu
+        where
+            parent_id = #{parentId}
+          and is_deleted = 0
+    </select>
 
-                <select id="selectAll" resultMap="sysMenuMap">
+    <update id="deleteById">
+    update sys_menu set
+    update_time = now() ,
+    is_deleted = 1
+    where
+    id = #{id}
+    </update>
+    <update id="updateById">
+        update sys_menu set
+                <if test="parentId != null and parentId != ''">
+            parent_id = #{parentId},
+                </if>
+                <if test="title != null and title != ''">
+            title = #{title},
+                </if>
+                <if test="component != null and component != ''">
+            component = #{component},
+                </if>
+                <if test="sortValue != null">
+            sort_value = #{sortValue},
+                </if>
+                <if test="status != null">
+            status = #{status},
+                </if>
+            update_time =  now()
+        where
+            id = #{id}
+    </update>
+
+    <select id="selectAll" resultMap="sysMenuMap">
         select <include refid="columns" />
         from sys_menu
         where
