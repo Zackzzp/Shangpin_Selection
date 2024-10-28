@@ -30,14 +30,16 @@ public class LoginAuthInterceptor implements HandlerInterceptor {
         }
 
         // 获取token
-        String token = request.getHeader("token");
+        String token = request.getHeader("Authorization").substring(7);
+        System.out.println(token);
         if(StrUtil.isEmpty(token)) {
             responseNoLoginInfo(response) ;
-            return false ;
+            return false;
         }
 
         // 如果token不为空，那么此时验证token的合法性
         String sysUserInfoJson = redisTemplate.opsForValue().get("user:login:" + token);
+        System.out.println(sysUserInfoJson);
         if(StrUtil.isEmpty(sysUserInfoJson)) {
             responseNoLoginInfo(response) ;
             return false ;

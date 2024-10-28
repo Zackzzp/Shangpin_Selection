@@ -30,6 +30,7 @@ public class ValidateCodeimpl implements ValidateCodeService {
         // 将验证码存储到Redis中
         redisTemplate.opsForValue().set("user:login:validatecode:" + codeKey, codeValue, 5, TimeUnit.MINUTES);
 
+
         // 构建响应结果数据
         ValidateCodeVo validateCodeVo = new ValidateCodeVo();
         validateCodeVo.setCodeKey(codeKey);

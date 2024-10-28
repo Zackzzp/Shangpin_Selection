@@ -16,15 +16,17 @@ import com.zack.model.dto.system.LoginDto;
 import com.zack.model.vo.system.LoginVo;
 import com.zack.model.vo.common.Result;
 import com.zack.model.vo.common.ResultCodeEnum;
+
 @Tag(name = "首页接口")
 @RestController
 @RequestMapping("/admin/system/index")
 public class IndexController {
     @Autowired
     private SysUserService sysUserService;
-   @Autowired
+    @Autowired
     private ValidateCodeService validateCodeService;
-@Operation(summary = "用户登录")
+
+    @Operation(summary = "用户登录")
     @PostMapping(value = "/login")
     public Result<LoginVo> login(@RequestBody LoginDto loginDto) {
         try {
@@ -35,27 +37,38 @@ public class IndexController {
         }
 
     }
+
     @Operation(summary = "生成验证码")
     @GetMapping(value = "/generateValidateCode")
     public Result<ValidateCodeVo> generateValidateCode() {
         ValidateCodeVo validateCodeVo = validateCodeService.generateValidateCode();
-        return Result.build(validateCodeVo , ResultCodeEnum.SUCCESS) ;
+        return Result.build(validateCodeVo, ResultCodeEnum.SUCCESS);
     }
+
     @Operation(summary = "获取用户信息")
     @GetMapping("/getUserInfo")
-    public Result<SysUser> getUserInfo(@RequestHeader(name = "token")String token) {
+    public Result<SysUser> getUserInfo(@RequestHeader(name = "Authorization") String authorizationHeader) {
+        String token = extractTokenFromAuthorizationHeader(authorizationHeader);
+        // 这里可以对token进行进一步处理，例如验证
         return Result.build(AuthContextUtil.getUser(), ResultCodeEnum.SUCCESS);
     }
+
     @Operation(summary = "用户退出")
     @Parameters(value = {
-            @Parameter(name = "令牌参数" , required = true)
+            @Parameter(name = "令牌参数", required = true)
     })
     @GetMapping(value = "/logout")
-    public Result logout(@RequestHeader(name = "token")String token) {
+    public Result logout(@RequestHeader(name = "Authorization") String authorizationHeader) {
+        String token = extractTokenFromAuthorizationHeader(authorizationHeader);
         sysUserService.logout(token);
         return Result.build(null, ResultCodeEnum.SUCCESS);
     }
 
-
+    private String extractTokenFromAuthorizationHeader(String authorizationHeader) {
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+            return authorizationHeader.substring(7); // "Bearer ".length() == 7
+        }
+        return null;
+    }
 
 }
