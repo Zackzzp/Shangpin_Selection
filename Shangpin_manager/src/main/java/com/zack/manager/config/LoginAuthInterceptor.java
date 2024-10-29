@@ -30,8 +30,16 @@ public class LoginAuthInterceptor implements HandlerInterceptor {
         }
 
         // 获取token
-        String token = request.getHeader("Authorization").substring(7);
-        System.out.println(token);
+        String token=null;
+        String authorizationHeader = request.getHeader("Authorization");
+        if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
+             token = authorizationHeader.substring(7);
+            System.out.println(token);
+        } else {
+            token=authorizationHeader;
+            // 不做处理或者可以在这里添加其他逻辑
+        }
+
         if(StrUtil.isEmpty(token)) {
             responseNoLoginInfo(response) ;
             return false;

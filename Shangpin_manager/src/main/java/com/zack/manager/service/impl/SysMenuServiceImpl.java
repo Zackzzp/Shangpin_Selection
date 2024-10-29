@@ -3,23 +3,28 @@ package com.zack.manager.service.impl;
 import com.zack.common.exception.ZackException;
 import com.zack.manager.SysMenuHelper;
 import com.zack.manager.mapper.SysMenuMapper;
+import com.zack.manager.mapper.SysRoleMenuMapper;
 import com.zack.manager.service.SysMenuService;
 import com.zack.model.enity.system.SysMenu;
 import com.zack.model.enity.system.SysUser;
 import com.zack.model.vo.system.SysMenuVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import com.zack.model.vo.common.ResultCodeEnum;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
+
 import com.zack.common.util.AuthContextUtil;
 
 @Service
 public class SysMenuServiceImpl implements SysMenuService {
     @Autowired
     SysMenuMapper sysMenuMapper;
+    @Autowired
+    SysRoleMenuMapper sysRoleMenuMapper;
 
     @Override
     public List<SysMenu> findNodes() {
@@ -31,9 +36,11 @@ public class SysMenuServiceImpl implements SysMenuService {
         return treeList;
     }
 
+    @Transactional
     @Override
     public void save(SysMenu sysMenu) {
         sysMenuMapper.insert(sysMenu);
+        updateSysRoleMenuIsHalf(sysMenu);
     }
 
     @Override
@@ -56,14 +63,14 @@ public class SysMenuServiceImpl implements SysMenuService {
         SysUser sysUser = AuthContextUtil.getUser();
         Long userId = sysUser.getId();          // 获取当前登录用户的id
 
-        List<SysMenu> sysMenuList = sysMenuMapper.selectListByUserId(userId) ;
+        List<SysMenu> sysMenuList = sysMenuMapper.selectListByUserId(userId);
 
         //构建树形数据
         List<SysMenu> sysMenuTreeList = SysMenuHelper.buildTree(sysMenuList);
         return this.buildMenus(sysMenuTreeList);
     }
 
-// 将List<SysMenu>对象转换成List<SysMenuVo>对象
+    // 将List<SysMenu>对象转换成List<SysMenuVo>对象
     private List<SysMenuVo> buildMenus(List<SysMenu> menus) {
 
         List<SysMenuVo> sysMenuVoList = new LinkedList<SysMenuVo>();
@@ -78,5 +85,22 @@ public class SysMenuServiceImpl implements SysMenuService {
             sysMenuVoList.add(sysMenuVo);
         }
         return sysMenuVoList;
+    }
+
+    private void updateSysRoleMenuIsHalf(SysMenu sysMenu) {
+
+        // 查询是否存在父节点
+        SysMenu parentMenu = sysMenuMapper.selectById(sysMenu.getParentId());
+
+        if(parentMenu != null) {
+
+            // 将该id的菜单设置为半开
+            sysRoleMenuMapper.updateSysRoleMenuIsHalf(parentMenu.getId()) ;
+
+            // 递归调用
+            updateSysRoleMenuIsHalf(parentMenu) ;
+
+        }
+
     }
 }

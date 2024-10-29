@@ -19,7 +19,14 @@
                         status
                 ) values (
                                  #{id},
-                                 #{parentId},
+            <choose>
+                <when test="parentId == null">
+                    0
+                </when>
+                <otherwise>
+                    #{parentId}
+                </otherwise>
+            </choose>,
                                  #{title},
                                  #{component},
                                  #{sortValue},
@@ -84,6 +91,9 @@
           AND sm.is_deleted = 0
           AND srm.is_deleted = 0
           AND sur.is_deleted = 0;
+    </select>
+    <select id="selectById" resultType="com.zack.model.enity.system.SysMenu">
+        select <include refid="columns" /> from sys_menu where id = #{id}
     </select>
 
 </mapper>

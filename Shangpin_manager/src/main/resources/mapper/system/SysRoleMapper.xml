@@ -52,7 +52,7 @@
         </update>
         <delete id="deleteById">
             update sys_role
-            set is_delete = 1
+            set is_deleted = 1
             where id = #{value}</delete>
 
         <select id="findByPage" resultMap="sysRoleMap">

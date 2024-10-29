@@ -10,4 +10,6 @@ public interface SysRoleMenuMapper {
     public abstract void deleteByRoleId(Long roleId);
 
     public abstract void doAssign(AssignMenuDto assignMenuDto);
+
+    public abstract void updateSysRoleMenuIsHalf(Long menuId);
 }
