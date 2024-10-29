@@ -70,5 +70,20 @@
         is_deleted = 0
         order by sort_value
         </select>
+    <select id="selectListByUserId" resultType="com.zack.model.enity.system.SysMenu">
+        SELECT DISTINCT
+            sm.*
+        FROM
+            sys_menu sm
+                JOIN
+            sys_role_menu srm ON sm.id = srm.menu_id
+                JOIN
+            sys_user_role sur ON srm.role_id = sur.role_id
+        WHERE
+            sur.user_id = 1
+          AND sm.is_deleted = 0
+          AND srm.is_deleted = 0
+          AND sur.is_deleted = 0;
+    </select>
 
-        </mapper>
+</mapper>

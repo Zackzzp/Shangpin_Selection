@@ -5,12 +5,16 @@ import com.zack.manager.SysMenuHelper;
 import com.zack.manager.mapper.SysMenuMapper;
 import com.zack.manager.service.SysMenuService;
 import com.zack.model.enity.system.SysMenu;
+import com.zack.model.enity.system.SysUser;
+import com.zack.model.vo.system.SysMenuVo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import com.zack.model.vo.common.ResultCodeEnum;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import com.zack.common.util.AuthContextUtil;
 
 @Service
 public class SysMenuServiceImpl implements SysMenuService {
@@ -44,5 +48,35 @@ public class SysMenuServiceImpl implements SysMenuService {
     @Override
     public void updateById(SysMenu sysMenu) {
         sysMenuMapper.updateById(sysMenu);
+    }
+
+    @Override
+    public List<SysMenuVo> findUserMenuList() {
+
+        SysUser sysUser = AuthContextUtil.getUser();
+        Long userId = sysUser.getId();          // 获取当前登录用户的id
+
+        List<SysMenu> sysMenuList = sysMenuMapper.selectListByUserId(userId) ;
+
+        //构建树形数据
+        List<SysMenu> sysMenuTreeList = SysMenuHelper.buildTree(sysMenuList);
+        return this.buildMenus(sysMenuTreeList);
+    }
+
+// 将List<SysMenu>对象转换成List<SysMenuVo>对象
+    private List<SysMenuVo> buildMenus(List<SysMenu> menus) {
+
+        List<SysMenuVo> sysMenuVoList = new LinkedList<SysMenuVo>();
+        for (SysMenu sysMenu : menus) {
+            SysMenuVo sysMenuVo = new SysMenuVo();
+            sysMenuVo.setTitle(sysMenu.getTitle());
+            sysMenuVo.setName(sysMenu.getComponent());
+            List<SysMenu> children = sysMenu.getChildren();
+            if (!CollectionUtils.isEmpty(children)) {
+                sysMenuVo.setChildren(buildMenus(children));
+            }
+            sysMenuVoList.add(sysMenuVo);
+        }
+        return sysMenuVoList;
     }
 }

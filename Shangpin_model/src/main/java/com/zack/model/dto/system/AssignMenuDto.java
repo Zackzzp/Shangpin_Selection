@@ -7,6 +7,6 @@ import java.util.Map;
 
 @Data
 public class AssignMenuDto {
-    private Long id;
+    private Long roleId;
     private List<Map<String, Number>> menuIdList;
 }

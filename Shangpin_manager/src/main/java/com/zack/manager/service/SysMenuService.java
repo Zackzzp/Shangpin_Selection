@@ -1,6 +1,7 @@
 package com.zack.manager.service;
 
 import com.zack.model.enity.system.SysMenu;
+import com.zack.model.vo.system.SysMenuVo;
 
 import java.util.List;
 
@@ -34,4 +35,10 @@ public interface SysMenuService {
      * @param sysMenu
      */
     public abstract void updateById(SysMenu sysMenu);
+
+    /**
+     * 动态菜单
+     * @return
+     */
+    public abstract List<SysMenuVo> findUserMenuList();
 }

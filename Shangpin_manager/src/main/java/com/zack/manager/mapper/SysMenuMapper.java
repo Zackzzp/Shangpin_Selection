@@ -17,4 +17,6 @@ public interface SysMenuMapper {
    public abstract void deleteById(Long id);
 
    public abstract void updateById(SysMenu sysMenu);
+
+   public abstract List<SysMenu> selectListByUserId(Long id);
 }

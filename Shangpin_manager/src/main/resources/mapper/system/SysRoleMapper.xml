@@ -3,7 +3,7 @@
         <mapper namespace="com.zack.manager.mapper.SysRoleMapper">
 
         <!--  映射查询到的字段 -->
-        <resultMap id="sysRoleMap" type="com.zack.model.dto.system.SysRoleDto" autoMapping="true"></resultMap>
+        <resultMap id="sysRoleMap" type="com.zack.model.enity.system.SysRole" autoMapping="true"></resultMap>
 
         <!-- 用于select查询公用抽取的列 -->
         <sql id="columns">
@@ -11,12 +11,19 @@
         </sql>
 
         <sql id="findPageWhere">
-        <where>
-        <if test="roleName != null and roleName != ''">
-        and role_name like CONCAT('%',#{roleName},'%')
-        </if>
-        and is_deleted = 0
-        </where>
+                <where>
+                        <choose>
+                                <!-- 当 roleName 为空字符串或仅包含空白字符时，不添加任何关于 roleName 的条件 -->
+                                <when test="roleName == null or roleName.trim() == ''">
+                                        <!-- 不添加任何条件 -->
+                                </when>
+                                <!-- 当 roleName 不为空且不仅仅是空白字符时，添加模糊查询条件 -->
+                                <otherwise>
+                                        and role_name like CONCAT('%', #{roleName}, '%')
+                                </otherwise>
+                        </choose>
+                        and is_deleted = 0
+                </where>
         </sql>
         <insert id="saveRole">
             insert into sys_role (id,

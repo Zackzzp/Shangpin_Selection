@@ -33,7 +33,7 @@ public class SysRoleMenuServiceImpl implements SysRoleMenuService {
     @Override
     @Transactional
     public void doAssign(AssignMenuDto assignMenuDto) {
-        sysRoleMenuMapper.deleteByRoleId(assignMenuDto.getId());
+        sysRoleMenuMapper.deleteByRoleId(assignMenuDto.getRoleId());
         List <Map<String,Number>> menuInfo=assignMenuDto.getMenuIdList();
         if (menuInfo!=null&&menuInfo.size()>0) {
             sysRoleMenuMapper.doAssign(assignMenuDto);

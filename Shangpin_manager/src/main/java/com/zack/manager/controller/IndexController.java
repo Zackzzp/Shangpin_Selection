@@ -4,6 +4,7 @@ import com.zack.common.exception.ZackException;
 import com.zack.common.util.AuthContextUtil;
 import com.zack.manager.service.ValidateCodeService;
 import com.zack.model.enity.system.SysUser;
+import com.zack.model.vo.system.SysMenuVo;
 import com.zack.model.vo.system.ValidateCodeVo;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -16,6 +17,10 @@ import com.zack.model.dto.system.LoginDto;
 import com.zack.model.vo.system.LoginVo;
 import com.zack.model.vo.common.Result;
 import com.zack.model.vo.common.ResultCodeEnum;
+import com.zack.manager.service.SysMenuService;
+
+import java.util.List;
+
 
 @Tag(name = "首页接口")
 @RestController
@@ -25,6 +30,8 @@ public class IndexController {
     private SysUserService sysUserService;
     @Autowired
     private ValidateCodeService validateCodeService;
+    @Autowired
+    private SysMenuService sysMenuService;
 
     @Operation(summary = "用户登录")
     @PostMapping(value = "/login")
@@ -62,6 +69,13 @@ public class IndexController {
         String token = extractTokenFromAuthorizationHeader(authorizationHeader);
         sysUserService.logout(token);
         return Result.build(null, ResultCodeEnum.SUCCESS);
+    }
+
+    @Operation(summary = "动态菜单")
+    @GetMapping("/menus")
+    public Result menus() {
+        List<SysMenuVo> sysMenuVoList = sysMenuService.findUserMenuList();
+        return Result.build(sysMenuVoList, ResultCodeEnum.SUCCESS);
     }
 
     private String extractTokenFromAuthorizationHeader(String authorizationHeader) {
