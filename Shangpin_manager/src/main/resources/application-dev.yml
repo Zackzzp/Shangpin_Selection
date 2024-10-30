@@ -10,9 +10,28 @@ spring:
     redis:
       host: localhost
       port: 6379
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+fdfs:
+  tracker-list: 47.121.222.152:22122
+  connect-timeout: 15000
+  so-timeout: 15000 # 读取的超时时间：ms
+  thumb-image: # 缩略图
+      width: 150
+      height: 150
+  pool:
+    jmx-enabled: false # 内部的池
+    max-total: 200 # 从池中借出的对象的最大数目
+    max-wait-millis: 5000 # 获取连接时的最大等待毫秒数
+    max-total-per-key: 50
+
+
 mybatis:
   config-location: classpath:/mybatis-config.xml
   mapper-locations: classpath:/mapper/*/*.xml
+
 #自定义配置
 zack:
   auth:
