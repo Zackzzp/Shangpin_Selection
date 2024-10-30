@@ -27,4 +27,16 @@ public class BrandController {
         return Result.build(null , ResultCodeEnum.SUCCESS) ;
     }
 
+    @PutMapping("updateById")
+    public Result updateById(@RequestBody Brand brand) {
+        brandService.updateById(brand);
+        return Result.build(null , ResultCodeEnum.SUCCESS) ;
+    }
+
+    @DeleteMapping("/deleteById/{id}")
+    public Result deleteById(@PathVariable Long id) {
+        brandService.deleteById(id);
+        return Result.build(null , ResultCodeEnum.SUCCESS) ;
+    }
+
 }

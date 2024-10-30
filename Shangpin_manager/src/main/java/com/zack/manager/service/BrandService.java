@@ -20,4 +20,16 @@ public interface BrandService {
      * @param brand
      */
     public abstract void save(Brand brand);
+
+    /**
+     * 修改品牌
+     * @param brand
+     */
+    public abstract void updateById(Brand brand);
+
+    /**
+     * 删除品牌
+     * @param id
+     */
+    public abstract void deleteById(Long id);
 }
