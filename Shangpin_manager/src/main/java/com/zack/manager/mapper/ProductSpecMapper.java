@@ -15,4 +15,6 @@ public interface ProductSpecMapper {
     public abstract void updateById(ProductSpec productSpec);
 
     public abstract void deleteById(Long id);
+
+    public abstract List<ProductSpec> findAll();
 }

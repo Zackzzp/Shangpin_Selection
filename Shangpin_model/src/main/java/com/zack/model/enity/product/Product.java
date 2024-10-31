@@ -3,6 +3,8 @@ package com.zack.model.enity.product;
 import com.zack.model.enity.base.BaseEntity;
 import lombok.Data;
 
+import java.util.List;
+
 @Data
 public class Product extends BaseEntity {
 
@@ -23,5 +25,9 @@ public class Product extends BaseEntity {
     private String category1Name;			// 一级分类
     private String category2Name;			// 二级分类
     private String category3Name;			// 三级分类
+
+
+    private List<ProductSku> productSkuList;		// sku列表集合
+    private String detailsImageUrls;
 
 }

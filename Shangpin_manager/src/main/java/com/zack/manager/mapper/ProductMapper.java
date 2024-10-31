@@ -9,4 +9,6 @@ import java.util.List;
 @Mapper
 public interface ProductMapper {
    public abstract List<Product> findByPage(ProductDto productDto);
+
+   public abstract void save(Product product);
 }

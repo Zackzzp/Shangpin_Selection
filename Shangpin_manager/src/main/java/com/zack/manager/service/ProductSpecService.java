@@ -3,6 +3,8 @@ package com.zack.manager.service;
 import com.github.pagehelper.PageInfo;
 import com.zack.model.enity.product.ProductSpec;
 
+import java.util.List;
+
 public interface ProductSpecService {
     /**
      * 按页查询
@@ -29,5 +31,11 @@ public interface ProductSpecService {
      * @param id
      */
     public abstract void deleteById(Long id);
+
+    /**
+     * 查找所有品牌
+     * @return
+     */
+    public abstract List<ProductSpec> findAll();
 
 }

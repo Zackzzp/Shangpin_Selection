@@ -54,5 +54,10 @@
         where is_deleted = 0
         order by id desc
     </select>
+    <select id="findAll" resultType="com.zack.model.enity.product.ProductSpec">
+        select <include refid="columns"/>
+        from product_spec
+        order by id desc
+    </select>
 
 </mapper>
