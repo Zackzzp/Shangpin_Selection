@@ -5,6 +5,7 @@ import com.github.pagehelper.PageInfo;
 import com.zack.manager.mapper.CategoryBrandMapper;
 import com.zack.manager.service.CategoryBrandService;
 import com.zack.model.dto.product.CategoryBrandDto;
+import com.zack.model.enity.product.Brand;
 import com.zack.model.enity.product.CategoryBrand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +37,10 @@ public class CategoryBrandServiceImpl implements CategoryBrandService {
     @Override
     public void deleteById(Long id) {
         categoryBrandMapper.deleteById(id);
+    }
+
+    @Override
+    public List<Brand> findBrandByCategoryId(Long categoryId) {
+        return List.of();
     }
 }

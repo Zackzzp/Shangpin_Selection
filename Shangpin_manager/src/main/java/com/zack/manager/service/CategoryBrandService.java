@@ -2,6 +2,7 @@ package com.zack.manager.service;
 
 import com.github.pagehelper.PageInfo;
 import com.zack.model.dto.product.CategoryBrandDto;
+import com.zack.model.enity.product.Brand;
 import com.zack.model.enity.product.CategoryBrand;
 
 import java.util.List;
@@ -34,5 +35,12 @@ public interface CategoryBrandService {
      * @param id
      */
     public abstract void deleteById(Long id);
+
+    /**
+     * 查找商品品牌
+     * @param categoryId
+     * @return
+     */
+    public abstract List<Brand>findBrandByCategoryId(Long categoryId);
 
 }
