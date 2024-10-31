@@ -1,6 +1,6 @@
 package com.zack.common.anno;
 
-import com.zakc.common.service.Knife4jConfig;
+import com.zack.common.service.Knife4jConfig;
 import org.springframework.context.annotation.Import;
 
 import java.lang.annotation.ElementType;

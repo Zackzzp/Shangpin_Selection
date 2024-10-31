@@ -1,4 +1,4 @@
-package com.zakc.common.service;
+package com.zack.common.service;
 
 
 import io.swagger.v3.oas.models.OpenAPI;

@@ -14,4 +14,7 @@ public interface BrandMapper {
     public abstract void updateById(Brand brand);
 
     public abstract void deleteById(Long id);
+
+    public abstract List<Brand> findAll();
+
 }

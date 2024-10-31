@@ -32,4 +32,10 @@ public interface BrandService {
      * @param id
      */
     public abstract void deleteById(Long id);
+
+    /**
+     * 查询所有品牌
+     */
+    public abstract List<Brand> findAll();
+
 }
