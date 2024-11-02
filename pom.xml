@@ -27,6 +27,7 @@
         <module>Shangpin_common/common-service</module>
         <module>Shangpin_model</module>
         <module>Shangpin_manager</module>
+        <module>Shangpin_common/common-log</module>
     </modules>
     <scm>
         <connection/>

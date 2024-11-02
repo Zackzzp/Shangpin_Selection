@@ -11,4 +11,11 @@ public interface ProductMapper {
    public abstract List<Product> findByPage(ProductDto productDto);
 
    public abstract void save(Product product);
+
+   public abstract Product selectById(Long id);
+
+   public abstract  void updateById(Product product);
+
+   public abstract void deleteById(Long id);
+
 }

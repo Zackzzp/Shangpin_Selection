@@ -2,6 +2,7 @@ package com.zack.manager;
 import com.github.tobato.fastdfs.FdfsClientConfig;
 import com.zack.common.anno.EnableGlobaleExceptionHandler;
 import com.zack.common.anno.EnableKnife4j;
+import com.zack.common.anno.EnableLogAspect;
 import com.zack.manager.properties.UserAuthProperties;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -17,6 +18,7 @@ import org.springframework.jmx.support.RegistrationPolicy;
 @Import(FdfsClientConfig.class)
 @EnableMBeanExport(registration = RegistrationPolicy.IGNORE_EXISTING)
 @EnableKnife4j
+@EnableLogAspect
 @MapperScan("com.zack.manager.mapper")
 public class ManagerApplication {
     public static void main(String[] args) {

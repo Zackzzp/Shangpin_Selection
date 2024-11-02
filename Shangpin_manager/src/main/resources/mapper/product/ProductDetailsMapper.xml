@@ -14,5 +14,37 @@
                     now(),
                     0)
         </insert>
+    <update id="updateById">
+        update product_details set
+                <if test="productId != null and productId != ''">
+            product_id = #{productId},
+                </if>
+                <if test="imageUrls != null and imageUrls != ''">
+            image_urls = #{imageUrls},
+                </if>
+            update_time =  now()
+        where
+            id = #{id}
+    </update>
+    <update id="deleteByProductId">
+        update product_details set
+                                   update_time = now() ,
+                                   is_deleted = 1
+        where
+            product_id = #{productId}
+    </update>
+    <resultMap id="productDetailsMap" type="com.zack.model.enity.product.ProductDetails" autoMapping="true"></resultMap>
 
-        </mapper>
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+    id,product_id,image_urls,create_time,update_time,is_deleted
+    </sql>
+
+    <select id="selectByProductId" resultMap="productDetailsMap">
+    select <include refid="columns" />
+    from product_details
+    where
+    product_id = #{productId}
+    </select>
+
+</mapper>
