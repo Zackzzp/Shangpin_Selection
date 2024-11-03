@@ -1,4 +1,4 @@
-package com.zack.common.anno;
+package com.zack.common.log.annotion;
 
 
 import com.zack.common.log.enums.OperatorType;
