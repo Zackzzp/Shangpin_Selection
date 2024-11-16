@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.3.4</version>
+        <version>3.2.8</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.zack.shangpin</groupId>
@@ -28,7 +28,8 @@
         <module>Shangpin_model</module>
         <module>Shangpin_manager</module>
         <module>Shangpin_common/common-log</module>
-        <module>Shangpin_cloud/zack-cloud-order</module>
+        <module>Shangpin_service</module>
+        <module>Shangpin-server-gateway</module>
     </modules>
     <scm>
         <connection/>
@@ -51,7 +52,7 @@
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-starter</artifactId>
-                <version>3.3.4</version>
+                <version>3.2.8</version>
             </dependency>
 
             <dependency>
@@ -95,7 +96,21 @@
                 <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
                 <version>4.5.0</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>2023.0.3</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+                <version>2023.0.0.0-RC1</version>
+            </dependency>
+            <dependency>
+                <groupId>com.alipay.sdk</groupId>
+                <artifactId>alipay-sdk-java</artifactId>
+                <version>4.39.246.ALL</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
