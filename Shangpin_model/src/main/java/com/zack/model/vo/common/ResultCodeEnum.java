@@ -9,7 +9,10 @@ public enum ResultCodeEnum {
     SYSTEM_ERROR(500,"系统异常"),
     VALIDATECODE_ERROR(202 , "验证码错误"),
     LOGIN_AUTH(208,"用户未登录"),
-    NODE_ERROR(400,"存在子节点，不允许删除");
+    NODE_ERROR(400,"存在子节点，不允许删除"),
+    DATA_ERROR(401,"数据异常"),
+    USER_NAME_IS_EXISTS(200,"用户名已存在"),
+    ACCOUNT_STOP(216,"账号已停用");
     private Integer code;
     private String message;
 

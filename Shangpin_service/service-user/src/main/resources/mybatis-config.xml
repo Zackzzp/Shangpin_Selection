@@ -13,8 +13,5 @@
         <!-- 分页插件 -->
         <plugin interceptor="com.github.pagehelper.PageInterceptor"/>
     </plugins>
-    <mappers>
-        <package name="com.zack.service.product.mapper"/>
-    </mappers>
 
 </configuration>

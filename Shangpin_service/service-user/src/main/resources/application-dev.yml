@@ -1,9 +1,9 @@
 server:
-  port: 8511
+  port: 8512
 
 spring:
   application:
-    name: service-product
+    name: service-user
   cloud:
     nacos:
       discovery:
@@ -14,7 +14,7 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3308/shangpin_selection?serverTimezone=UTC&characterEncoding=utf8&useUnicode=true&useSSL=true
+    url: jdbc:mysql://192.168.136.142:3308/shangpin_selection?serverTimezone=UTC&characterEncoding=utf8&useUnicode=true&useSSL=true
     username: root
     password: root
   data:
@@ -23,5 +23,5 @@ spring:
       port: 6379
 
 mybatis:
-  config-location: classpath:/mybatis-config.xml
-  mapper-locations: classpath:/mapper/*/*.xml
+  config-location: classpath:mybatis-config.xml
+  mapper-locations: classpath:mapper/*/*.xml
