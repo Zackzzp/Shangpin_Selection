@@ -30,6 +30,7 @@
         <module>Shangpin_common/common-log</module>
         <module>Shangpin_service</module>
         <module>Shangpin-server-gateway</module>
+        <module>Shangpin-service-client</module>
     </modules>
     <scm>
         <connection/>

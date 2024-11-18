@@ -4,15 +4,17 @@ import com.alibaba.fastjson.JSONObject;
 import com.zack.common.exception.ZackException;
 import com.zack.model.vo.common.ResultCodeEnum;
 import com.zack.service.user.service.SmsService;
+import com.zack.service.user.util.HttpUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.http.HttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Service;
 
 
-import java.net.http.HttpResponse;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
