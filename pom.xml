@@ -31,6 +31,7 @@
         <module>Shangpin_service</module>
         <module>Shangpin-server-gateway</module>
         <module>Shangpin-service-client</module>
+        <module>Shangpin_service/service-order</module>
     </modules>
     <scm>
         <connection/>
