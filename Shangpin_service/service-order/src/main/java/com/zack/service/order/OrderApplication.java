@@ -7,7 +7,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
 @EnableFeignClients(basePackages = {
-        "com.zack.feign.cart"
+        "com.zack.feign.cart","com.zack.feign.user","com.zack.feign.product"
 })
 @EnableUserTokenFeignInterceptor
 public class OrderApplication {

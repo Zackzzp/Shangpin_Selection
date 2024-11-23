@@ -50,5 +50,21 @@
             <artifactId>Shangpin_common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
+        <dependency>
+            <groupId>com.zack.shangpin</groupId>
+            <artifactId>service-user-client</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.zack.shangpin</groupId>
+            <artifactId>service-product-client</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.pagehelper</groupId>
+            <artifactId>pagehelper</artifactId>
+            <version>6.1.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 </project>

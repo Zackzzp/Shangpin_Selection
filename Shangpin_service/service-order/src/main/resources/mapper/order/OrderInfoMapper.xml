@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zack.service.order.mapper.OrderInfoMapper">
+
+
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id
+        ,user_id,nick_name,order_no,coupon_id,total_amount,coupon_amount,original_total_amount,feight_fee,pay_type,order_status,receiver_name,receiver_phone,receiver_tag_name,receiver_province,receiver_city,receiver_district,receiver_address,payment_time,delivery_time,receive_time,remark,cancel_time,cancel_reason,create_time,update_time,is_deleted
+    </sql>
+
+    <insert id="save" useGeneratedKeys="true" keyProperty="id">
+        insert into order_info (id,
+                                user_id,
+                                nick_name,
+                                order_no,
+                                coupon_id,
+                                total_amount,
+                                coupon_amount,
+                                original_total_amount,
+                                feight_fee,
+                                pay_type,
+                                order_status,
+                                receiver_name,
+                                receiver_phone,
+                                receiver_province,
+                                receiver_city,
+                                receiver_district,
+                                receiver_address,
+                                payment_time,
+                                delivery_time,
+                                receive_time,
+                                remark,
+                                cancel_time,
+                                cancel_reason)
+        values (#{id},
+                #{userId},
+                #{nickName},
+                #{orderNo},
+                #{couponId},
+                #{totalAmount},
+                #{couponAmount},
+                #{originalTotalAmount},
+                #{feightFee},
+                #{payType},
+                #{orderStatus},
+                #{receiverName},
+                #{receiverPhone},
+                #{receiverProvince},
+                #{receiverCity},
+                #{receiverDistrict},
+                #{receiverAddress},
+                #{paymentTime},
+                #{deliveryTime},
+                #{receiveTime},
+                #{remark},
+                #{cancelTime},
+                #{cancelReason})
+    </insert>
+    <select id="getById" resultType="com.zack.model.enity.order.OrderInfo">
+        select
+        <include refid="columns"/>
+        from order_info
+        where
+        id = #{id}
+    </select>
+    <resultMap id="orderInfoMap" type="com.zack.model.enity.order.OrderInfo" autoMapping="true">
+        <!--id:表示主键 property：表示实体类的属性名 column：表示通过sql 执行以后查询出来的字段名-->
+        <id property="id" column="id"></id>
+
+        <!--一对多-->
+        <collection property="orderItemList" ofType="com.zack.model.enity.order.OrderItem" autoMapping="true"
+                    column="{orderId = id}"
+                    select="com.zack.service.order.mapper.OrderItemMapper.findByOrderId">
+        </collection>
+    </resultMap>
+    <select id="findUserPage" resultMap="orderInfoMap">
+        select
+        <include refid="columns"/>
+        from order_info
+        <where>
+            <if test="userId != null">
+                and user_id = #{userId}
+            </if>
+            <if test="orderStatus != null">
+                and order_status = #{orderStatus}
+            </if>
+            and is_deleted = 0
+        </where>
+        order by id desc
+    </select>
+    <select id="getByOrderNo" resultType="com.zack.model.enity.order.OrderInfo">
+        select <include refid="columns" />
+        from order_info
+        where
+            order_no = #{orderNo}
+    </select>
+</mapper>

@@ -12,7 +12,8 @@ public enum ResultCodeEnum {
     NODE_ERROR(400,"存在子节点，不允许删除"),
     DATA_ERROR(401,"数据异常"),
     USER_NAME_IS_EXISTS(200,"用户名已存在"),
-    ACCOUNT_STOP(216,"账号已停用");
+    ACCOUNT_STOP(216,"账号已停用"),
+    STOCK_LESS(219,"库存不足");
     private Integer code;
     private String message;
 

@@ -18,4 +18,10 @@
         where
         user_id = #{userId}
         </select>
-        </mapper>
+    <select id="getById" resultType="com.zack.model.enity.user.UserAddress">
+            select <include refid="columns" />
+            from user_address
+            where
+                    id = #{id}
+    </select>
+</mapper>

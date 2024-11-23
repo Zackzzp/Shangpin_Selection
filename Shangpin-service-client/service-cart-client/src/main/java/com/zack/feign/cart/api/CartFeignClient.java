@@ -13,5 +13,10 @@ public interface CartFeignClient {
     @GetMapping(value = "/api/order/cart/auth/getAllCkecked")
     public abstract Result<List<CartInfo>> getAllCkecked(Long userId) ;
 
+    @GetMapping(value = "/api/order/cart/auth/deleteChecked")
+    public abstract Result deleteChecked() ;
+
+
+
 }
 
