@@ -10,7 +10,7 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @SpringBootApplication
 @EnableUserWebMvcConfiguration
 @EnableFeignClients({
-        "com.zack.feign.order"
+        "com.zack.feign.order","com.zack.feign.product"
 })
 @EnableConfigurationProperties(AlipayProperties.class)
 public class PayApplication {

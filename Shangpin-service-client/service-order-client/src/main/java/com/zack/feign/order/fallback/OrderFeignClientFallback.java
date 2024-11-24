@@ -15,4 +15,10 @@ public class OrderFeignClientFallback implements OrderFeignClient {
         return Result.build(null , ResultCodeEnum.SUCCESS) ;
     }
 
+    @Override
+    public Result updateOrderStatus(String orderNo, Integer orderStatus) {
+        log.info("OrderFeignClientFallback...updateOrderClientFallback方法执行了");
+        return Result.build(null , ResultCodeEnum.SUCCESS) ;
+    }
+
 }

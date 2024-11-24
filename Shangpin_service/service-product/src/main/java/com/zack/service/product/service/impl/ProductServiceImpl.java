@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.zack.model.dto.product.ProductSkuDto;
+import com.zack.model.dto.product.SkuSaleDto;
 import com.zack.model.enity.product.Product;
 import com.zack.model.enity.product.ProductDetails;
 import com.zack.model.enity.product.ProductSku;
@@ -14,6 +15,8 @@ import com.zack.service.product.mapper.ProductSkuMapper;
 import com.zack.service.product.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import java.util.Arrays;
 import java.util.HashMap;
@@ -75,5 +78,16 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public ProductSku getBySkuId(Long skuId) {
         return productSkuMapper.getById(skuId);
+    }
+
+    @Transactional
+    @Override
+    public Boolean updateSkuSaleNum(List<SkuSaleDto> skuSaleDtoList) {
+        if(!CollectionUtils.isEmpty(skuSaleDtoList)) {
+            for(SkuSaleDto skuSaleDto : skuSaleDtoList) {
+                productSkuMapper.updateSale(skuSaleDto.getSkuId(), skuSaleDto.getNum());
+            }
+        }
+        return true;
     }
 }

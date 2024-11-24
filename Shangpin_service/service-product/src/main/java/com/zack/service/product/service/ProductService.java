@@ -2,6 +2,7 @@ package com.zack.service.product.service;
 
 import com.github.pagehelper.PageInfo;
 import com.zack.model.dto.product.ProductSkuDto;
+import com.zack.model.dto.product.SkuSaleDto;
 import com.zack.model.enity.product.ProductSku;
 import com.zack.model.vo.h5.ProductItemVo;
 
@@ -12,4 +13,5 @@ public interface ProductService {
     PageInfo<ProductSku> findByPage(Integer page, Integer limit, ProductSkuDto productSkuDto);
     ProductItemVo item(Long skuId);
     ProductSku getBySkuId(Long skuId);
+    Boolean updateSkuSaleNum(List<SkuSaleDto> skuSaleDtoList);
 }
